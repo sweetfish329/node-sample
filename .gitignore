@@ -27,8 +27,6 @@ lerna-debug.log*
 
 # エディタ設定
 .DS_Store
-.vscode/*
-!.vscode/extensions.json
 .idea
 *.suo
 *.ntvs*
