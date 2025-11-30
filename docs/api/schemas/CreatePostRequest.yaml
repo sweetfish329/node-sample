@@ -1,0 +1,18 @@
+type: object
+description: 投稿作成リクエスト
+properties:
+  title:
+    type: string
+    description: タイトル
+    minLength: 1
+  content:
+    type: string
+    description: 本文
+    minLength: 1
+  authorId:
+    type: string
+    description: 投稿者ID
+required:
+  - title
+  - content
+  - authorId

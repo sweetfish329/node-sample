@@ -1,0 +1,22 @@
+{
+  "name": "@node-sample/backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hono.js バックエンドAPI",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@node-sample/schema": "workspace:^1.0.0",
+    "hono": "^4",
+    "@hono/node-server": "^1.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.9.3"
+  }
+}

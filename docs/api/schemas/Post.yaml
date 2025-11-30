@@ -1,0 +1,25 @@
+type: object
+description: 投稿情報
+properties:
+  id:
+    type: string
+    description: 投稿ID
+  title:
+    type: string
+    description: タイトル
+  content:
+    type: string
+    description: 本文
+  authorId:
+    type: string
+    description: 投稿者ID
+  createdAt:
+    type: string
+    format: date-time
+    description: 作成日時
+required:
+  - id
+  - title
+  - content
+  - authorId
+  - createdAt

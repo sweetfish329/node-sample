@@ -1,0 +1,40 @@
+# 依存関係
+node_modules/
+.pnp
+.pnp.js
+
+# ビルド出力
+dist/
+build/
+*.tsbuildinfo
+
+# 自動生成ファイル
+packages/schema/generated/
+
+# 環境変数
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ログ
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# エディタ設定
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# テスト
+coverage/

@@ -1,0 +1,14 @@
+type: object
+description: ユーザー作成リクエスト
+properties:
+  name:
+    type: string
+    description: ユーザー名
+    minLength: 1
+  email:
+    type: string
+    format: email
+    description: メールアドレス
+required:
+  - name
+  - email

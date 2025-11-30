@@ -1,0 +1,20 @@
+type: object
+description: ページネーション情報
+properties:
+  page:
+    type: integer
+    description: 現在のページ番号
+  limit:
+    type: integer
+    description: 1ページあたりの件数
+  total:
+    type: integer
+    description: 総件数
+  totalPages:
+    type: integer
+    description: 総ページ数
+required:
+  - page
+  - limit
+  - total
+  - totalPages

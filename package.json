@@ -1,0 +1,27 @@
+{
+  "name": "node-samplee",
+  "version": "1.0.0",
+  "private": true,
+  "description": "React + Hono.js + openapi-typescript モノレポサンプルプロジェクト",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w backend\" \"npm run dev -w frontend\"",
+    "build": "npm run generate:types && npm run build -w backend -w frontend",
+    "generate:types": "npm run generate -w @node-sample/schema",
+    "clean": "rm -rf node_modules frontend/node_modules backend/node_modules packages/schema/node_modules"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.3.8",
+    "@tsconfig/strictest": "^2.0.8",
+    "concurrently": "^8.2.2",
+    "openapi-typescript": "^7.10.1",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@node-sample/schema",
+  "version": "1.0.0",
+  "private": true,
+  "description": "OpenAPI仕様から生成されたTypeScript型定義",
+  "type": "module",
+  "main": "./generated/schema.d.ts",
+  "types": "./generated/schema.d.ts",
+  "scripts": {
+    "generate": "openapi-typescript ../../docs/api/openapi.yaml -o ./generated/schema.d.ts"
+  },
+  "devDependencies": {
+    "openapi-typescript": "^6.7.3",
+    "typescript": "^5.9.3"
+  }
+}

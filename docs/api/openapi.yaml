@@ -1,0 +1,182 @@
+openapi: 3.2.3
+info:
+  title: Sample API
+  description: OpenAPI TypeScript サンプルプロジェクトのAPI仕様
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3000
+    description: ローカル開発サーバー
+
+paths:
+  /api/users:
+    get:
+      summary: ユーザー一覧取得
+      description: 登録されているユーザーの一覧を取得します
+      operationId: getUsers
+      tags:
+        - users
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/User"
+                required:
+                  - users
+    post:
+      summary: ユーザー作成
+      description: 新しいユーザーを作成します
+      operationId: createUser
+      tags:
+        - users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUserRequest"
+      responses:
+        "201":
+          description: 作成成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+
+  /api/users/{id}:
+    get:
+      summary: ユーザー詳細取得
+      description: 指定されたIDのユーザー情報を取得します
+      operationId: getUserById
+      tags:
+        - users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ユーザーID
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "404":
+          description: ユーザーが見つかりません
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/posts:
+    get:
+      summary: 投稿一覧取得
+      description: 投稿の一覧を取得します。ページネーションに対応しています
+      operationId: getPosts
+      tags:
+        - posts
+      parameters:
+        - name: page
+          in: query
+          description: ページ番号（1から始まる）
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          description: 1ページあたりの件数
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Post"
+                  pagination:
+                    $ref: "#/components/schemas/Pagination"
+                required:
+                  - data
+                  - pagination
+    post:
+      summary: 投稿作成
+      description: 新しい投稿を作成します
+      operationId: createPost
+      tags:
+        - posts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreatePostRequest"
+      responses:
+        "201":
+          description: 作成成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Post"
+
+  /api/posts/{id}:
+    get:
+      summary: 投稿詳細取得
+      description: 指定されたIDの投稿を取得します
+      operationId: getPostById
+      tags:
+        - posts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: 投稿ID
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Post"
+        "404":
+          description: 投稿が見つかりません
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    User:
+      $ref: ./schemas/User.yaml
+    CreateUserRequest:
+      $ref: ./schemas/CreateUserRequest.yaml
+    Post:
+      $ref: ./schemas/Post.yaml
+    CreatePostRequest:
+      $ref: ./schemas/CreatePostRequest.yaml
+    Pagination:
+      $ref: ./schemas/Pagination.yaml
+    Error:
+      $ref: ./schemas/Error.yaml
