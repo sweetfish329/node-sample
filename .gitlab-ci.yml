@@ -1,0 +1,13 @@
+stages:
+  - report
+
+generate_weekly_issue:
+  stage: report
+  image: alpine:latest
+  variables:
+    GIT_DEPTH: 0 # Full clone to ensure we have the full git history
+  before_script:
+    - apk add --no-cache git bash curl jq
+  script:
+    - ./scripts/create_weekly_issue.sh
+  when: manual
